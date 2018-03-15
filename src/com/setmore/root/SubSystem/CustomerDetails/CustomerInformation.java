@@ -42,10 +42,9 @@ public class CustomerInformation {
     }
 
     public void displayCustomerDetail(){
-        System.out.println("ID\tName\tAddress\tMobileNumber\tEmailAddress");
+        System.out.println("ID\tName\tAddress\t\tMobileNumber\tEmailAddress");
         for (CustomerDetailTemplate cdt : CustomerContactList){
             System.out.println(cdt.customerID + "\t" + cdt.customerName + "\t" + cdt.customerAddress + "\t\t" + cdt.customerMobileNumber + "\t\t" + cdt.customerEmailAddress);
         }
     }
-
 }

@@ -26,20 +26,22 @@ public class PurchaseInformation {
                 Iterator<StockDetailsTemplate> iterator1 = entry.getValue().iterator();
                 while (iterator1.hasNext()){
                     StockDetailsTemplate sdt = iterator1.next();
-                    if (sdt.stockUnit < 0){
+                    if (sdt.stockUnit == 0 && purchaseStockUnit < sdt.stockUnit){
                         System.out.println("Sorry, The stock is not sufficient");
                     } else {
-                        int purchaseStockAmount = sdt.stockPrice * purchaseStockUnit;
-                        System.out.print("Enter the customer Name : ");
-                        String purchaseCustomerName = readInput.next();
-                        for (int i = 0; i < CustomerInformation.CustomerContactList.size() ; i ++){
-                            if (CustomerInformation.CustomerContactList.get(i).customerName.equalsIgnoreCase(purchaseCustomerName)){
-                                int purchaseStockID = sdt.stockId;
-                                String purchaseCustomerEmailAddress = CustomerInformation.CustomerContactList.get(i).customerEmailAddress;
-                                PurchaseDetail.add(new PurchaseDetailTemplate(purchaseStockID, purchaseStockName, purchaseStockAmount, purchaseCustomerName, purchaseCustomerEmailAddress));
-                                PurchaseStockDetail.put(PurchaseDetail, purchaseStockName);
-                                PurchasedCustomerDetail.put(PurchaseStockDetail, purchaseCustomerName);
-                                System.out.println(purchaseStockName + " is purchase by " +  purchaseCustomerName + " for " + purchaseStockAmount);
+                        if (sdt.stockName.equalsIgnoreCase(purchaseStockName)){
+                            int purchaseStockAmount = sdt.stockPrice * purchaseStockUnit;
+                            System.out.print("Enter the customer Name : ");
+                            String purchaseCustomerName = readInput.next();
+                            for (int i = 0; i < CustomerInformation.CustomerContactList.size() ; i ++){
+                                if (CustomerInformation.CustomerContactList.get(i).customerName.equalsIgnoreCase(purchaseCustomerName)){
+                                    int purchaseStockID = sdt.stockId;
+                                    String purchaseCustomerEmailAddress = CustomerInformation.CustomerContactList.get(i).customerEmailAddress;
+                                    PurchaseDetail.add(new PurchaseDetailTemplate(purchaseStockID, purchaseStockName, purchaseStockAmount, purchaseCustomerName, purchaseCustomerEmailAddress, purchaseStockUnit));
+                                    PurchaseStockDetail.put(PurchaseDetail, purchaseStockName);
+                                    PurchasedCustomerDetail.put(PurchaseStockDetail, purchaseCustomerName);
+                                    System.out.println(purchaseStockName + " " + purchaseStockUnit + " unit is purchase by " +  purchaseCustomerName + " for " + purchaseStockAmount);
+                                }
                             }
                         }
                     }
@@ -55,10 +57,12 @@ public class PurchaseInformation {
             Iterator<PurchaseDetailTemplate> saleStock = entry.getKey().iterator();
             while (saleStock.hasNext()){
                 PurchaseDetailTemplate psd = saleStock.next();
-                System.out.println("Stock Name : " + psd.purchaseStockName);
-                System.out.println("StockID\tSalesAmount\tCustomerName");
-                if (entry.getValue().equals(psd.purchaseStockName))
-                    System.out.println(psd.purchaseId + "\t\t" + psd.puchaseAmount + "\t\t\t" + psd.purchaseCustomerName);
+                String stockName = psd.purchaseStockName;
+                if (entry.getValue().equals(stockName)) {
+                    System.out.println("Stock Name : " + stockName);
+                    System.out.println("StockID\tSalesAmount\tCustomerName\tUnits");
+                    System.out.println(psd.purchaseId + "\t\t" + psd.puchaseAmount + "\t\t\t" + psd.purchaseCustomerName + "\t\t\t" + psd.purchaseStockUnit);
+                }
             }
         }
     }
@@ -77,9 +81,9 @@ public class PurchaseInformation {
                     Iterator<PurchaseDetailTemplate> Transaction = StockPurchase.getKey().iterator();
                     while (Transaction.hasNext()){
                         PurchaseDetailTemplate pdt = Transaction.next();
-                        if (pdt.purchaseCustomerName.equals(customerName)){
-                            System.out.println(pdt.purchaseId + "\t" + pdt.purchaseStockName + "\t\t" + pdt.puchaseAmount + "\t" + pdt.purchaseCustomerEmailAdress);
-                        }
+                        if (StockPurchase.getValue().equalsIgnoreCase(pdt.purchaseStockName))
+                            if (pdt.purchaseCustomerName.equals(customerName))
+                                System.out.println(pdt.purchaseId + "\t" + pdt.purchaseStockName + "\t\t" + pdt.puchaseAmount + "\t" + pdt.purchaseCustomerEmailAdress);
                     }
                 }
             }
