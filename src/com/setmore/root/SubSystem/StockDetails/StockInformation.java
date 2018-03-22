@@ -46,7 +46,7 @@ public class StockInformation{
             }
     }
 
-    public void displayStock(){
+    public static void displayStock(){
         Iterator<Map.Entry<String, Set<StockDetailsTemplate>>> iterator = StockMapDetail.entrySet().iterator();
         System.out.println("Id\tName\t\tPrice\tUnit\tPurchaseDate");
         while (iterator.hasNext()){
@@ -56,6 +56,47 @@ public class StockInformation{
                 StockDetailsTemplate sdt = iterator1.next();
                 if (entry.getKey().equals(sdt.stockName))
                     System.out.println(sdt.stockId + "\t" + sdt.stockName + "\t\t" + sdt.stockPrice + "\t\t" + sdt.stockUnit + "\t\t" + sdt.stockPurchaseDate);
+            }
+        }
+    }
+
+    public static void updateStock(){
+        int choice = 0;
+        displayStock();
+        System.out.print("Enter the Stock Name : ");
+        String stockName = readInput.next();
+        for (Map.Entry<String, Set<StockDetailsTemplate>> updateDetail : StockMapDetail.entrySet()){
+            String existStockName = updateDetail.getKey();
+            if (existStockName.equalsIgnoreCase(stockName)){
+                for (StockDetailsTemplate sdt: updateDetail.getValue()){
+                    do {
+                        System.out.println("1. Stock Id 2. Stock Price 3. Stock Unit 4. Stock Purchase Date 5 Exit");
+                        System.out.print("Choose the option to update : ");
+                        choice = readInput.nextInt();
+                        switch (choice) {
+                            case 1: System.out.print("Enter the stock ID :");
+                                    int id = readInput.nextInt();
+                                    sdt.stockId = id;
+                                    break;
+                            case 2: System.out.print("Enter the Stock Price : ");
+                                    int price = readInput.nextInt();
+                                    sdt.stockPrice = price;
+                                    break;
+                            case 3: System.out.print("Enter the Stock Unit : ");
+                                    int unit = readInput.nextInt();
+                                    sdt.stockUnit = unit;
+                                    break;
+                            case 4: System.out.print("Enter the Stock Purchase Date : ");
+                                    String purDate = readInput.next();
+                                    sdt.stockPurchaseDate = purDate;
+                                    break;
+                            case 5: System.out.println("Exiting from the update stock");
+                                    break;
+                            default: System.out.println("Sorry!!! Enter the correct option");
+                                    break;
+                        }
+                    }while (choice != 5);
+                }
             }
         }
     }

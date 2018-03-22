@@ -32,7 +32,7 @@ public class ManagementSystem {
                                         ci.addCustomerDetail();
                                         System.out.println("**************************************");
                                         break;
-                                case 2: System.out.print("Deleting Customer Information");
+                                case 2: System.out.println("Deleting Customer Information");
                                         ci.removeCustomerDetail();
                                         System.out.println("**************************************");
                                         break;
@@ -41,18 +41,20 @@ public class ManagementSystem {
                                         ci.displayCustomerDetail();
                                         System.out.println("**************************************");
                                         break;
-                                default: System.out.println("Exit from Customer Information Tab");
+                                case 4: System.out.println("Exit from Customer Information Tab");
                                         System.out.println("**************************************");
                                         break;
+                                default: System.out.println("Sorry!!! Enter the correct option");
+                                        break;
                             }
-                        }while (custChoice < 4);
+                        }while (custChoice != 4);
                         break;
                 case 2: System.out.println("Welcome to Stock Details");
                         System.out.println("------------------------");
                         StockInformation si = new StockInformation();
                         int stockChoice = 0;
                         do{
-                            System.out.println("1. Add Stock\t 2. Delete Stock\t 3. Display Stock\t 4. Exit");
+                            System.out.println("1. Add Stock\t 2. Delete Stock\t 3. Display Stock\t 4. Update Stock\t 5. Exit");
                             System.out.print("Select the tab : ");
                             stockChoice = readInput.nextInt();
                             switch (stockChoice){
@@ -72,11 +74,17 @@ public class ManagementSystem {
                                         si.displayStock();
                                         System.out.println("**************************************");
                                         break;
-                                default: System.out.println("Exit from Stock Information Tab");
+                                case 4: System.out.println("Update Stock Information");
+                                        System.out.println("------------------------");
+                                        si.updateStock();
+                                        break;
+                                case 5:System.out.println("Exit from Stock Information Tab");
                                         System.out.println("**************************************");
                                         break;
+                                default: System.out.println("Sorry!!! Enter the correct option");
+                                        break;
                             }
-                        }while (stockChoice < 4);
+                        }while (stockChoice != 4);
                         break;
                 case 3: System.out.println("Welcome to Purchase Details");
                         System.out.println("---------------------------");
@@ -101,16 +109,20 @@ public class ManagementSystem {
                                         System.out.println("-------------------------");
                                         pi.customerPurchaseHistory();
                                         break;
-                                default: System.out.println("Exit from Purchase Information Tab");
+                                case 4: System.out.println("Exit from Purchase Information Tab");
                                         System.out.println("***********************************");
                                         break;
+                                default: System.out.println("Sorry!!! Enter the correct option");
+                                        break;
                             }
-                        }while (purchaseChoice < 4);
+                        }while (purchaseChoice != 4);
                         break;
-                default: System.out.println("Exit from Inventory Management System");
+                case 4: System.out.println("Exit from Inventory Management System");
                         System.out.println("**************************************");
                         break;
+                default: System.out.println("Sorry!!! Enter the correct option");
+                        break;
             }
-        }while (choice < 4);
+        }while (choice != 4);
     }
 }

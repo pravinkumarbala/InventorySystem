@@ -31,6 +31,7 @@ public class PurchaseInformation {
                     } else {
                         if (sdt.stockName.equalsIgnoreCase(purchaseStockName)){
                             int purchaseStockAmount = sdt.stockPrice * purchaseStockUnit;
+                            sdt.stockUnit -= purchaseStockUnit;
                             System.out.print("Enter the customer Name : ");
                             String purchaseCustomerName = readInput.next();
                             for (int i = 0; i < CustomerInformation.CustomerContactList.size() ; i ++){

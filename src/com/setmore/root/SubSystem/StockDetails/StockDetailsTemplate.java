@@ -14,4 +14,6 @@ public class StockDetailsTemplate {
         this.stockUnit = stockUnit;
         this.stockPurchaseDate = stockPurchaseDate;
     }
+
+
 }
