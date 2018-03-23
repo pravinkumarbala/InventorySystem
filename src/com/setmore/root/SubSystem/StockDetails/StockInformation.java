@@ -39,11 +39,21 @@ public class StockInformation{
     }
 
     public static void deleteStock(String stockName){
-        for (Map.Entry map : StockMapDetail.entrySet())
-            if (map.getKey().equals(stockName)) {
-                StockMapDetail.remove(map.getKey());
-                StockSetDetail.remove(map.getValue());
+        for (Map.Entry<String, Set<StockDetailsTemplate>> deleteStodk: StockMapDetail.entrySet())
+            if (deleteStodk.getKey().equalsIgnoreCase(stockName)) {
+                StockMapDetail.remove(stockName);
+                StockSetDetail.remove(deleteStodk.getValue());
             }
+        /*for (Map.Entry map : StockMapDetail.entrySet()) {
+            if (map.getKey().equals(stockName)) {
+                for (StockDetailsTemplate sdt : StockSetDetail) {
+                    if (sdt.stockName.equalsIgnoreCase(stockName)) {
+                        StockMapDetail.remove(map.getKey());
+                        StockSetDetail.remove(map.getValue());
+                    }
+                }
+            }
+        }*/
     }
 
     public static void displayStock(){
