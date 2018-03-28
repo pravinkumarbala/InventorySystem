@@ -84,7 +84,7 @@ public class ManagementSystem {
                                 default: System.out.println("Sorry!!! Enter the correct option");
                                         break;
                             }
-                        }while (stockChoice != 4);
+                        }while (stockChoice != 5);
                         break;
                 case 3: System.out.println("Welcome to Purchase Details");
                         System.out.println("---------------------------");

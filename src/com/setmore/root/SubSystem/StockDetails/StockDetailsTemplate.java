@@ -15,5 +15,4 @@ public class StockDetailsTemplate {
         this.stockPurchaseDate = stockPurchaseDate;
     }
 
-
 }
